@@ -8,10 +8,11 @@ LDFLAGS= -lm
 CFLAGS=-Wall -Wfatal-errors -Wno-unused-result -Wno-unknown-pragmas -Wunused -Wunreachable-code -Wno-deprecated-declarations
 CFLAGS+=$(OPTS)
 
-CFLAGS+= -std=c++17
+CFLAGS+= -std=c++17 -pthread
 
 COMMON+= -I/usr/local/include/opencv4
-LDFLAGS+= -L/usr/local/lib -lopencv_core
+#LDFLAGS+= -L/usr/local/lib -lopencv_core -lopencv_imgcodecs -lopencv_imgproc
+LDFLAGS+= -lboost_filesystem -lopencv_core -lopencv_imgcodecs -lopencv_imgproc
 
 OBJ_CPU1=$(patsubst %.cpp,%.o,$(wildcard src/*.cpp))
 
@@ -34,7 +35,7 @@ $(RELEASE): $(OBJS)
 	$(COMPILER) $(COMMON) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 	
 $(OBJ_DIR)%.o: %.cpp $(DEPS_CPU1)
-	$(COMPILER) $(COMMON) $(CFLAGS) -c $< -o $@ $(LDFLAGS)
+	$(COMPILER) $(COMMON) $(CFLAGS) -c $< -o $@
 
 .PHONY: clean
 
