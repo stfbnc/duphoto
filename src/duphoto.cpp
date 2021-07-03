@@ -1,5 +1,6 @@
 #include <iostream>
 #include "picture_manager.h"
+#include "hashes_map.h"
 
 int main(int argc, char **argv)
 {
@@ -11,6 +12,14 @@ int main(int argc, char **argv)
     std::string img_folder = argv[1];
     PictureManager pic_manager = PictureManager(img_folder);
     pic_manager.getHashes();
+
+    /*std::map<std::string, int64_t> h_map = HashesMap::getInstance()->getDataMap();
+    for(auto const& [key, val] : h_map)
+    {
+        std::cout << "File: " << key << ", hash: " << val << std::endl;
+    }*/
+
+    pic_manager.getSimilarPictures();
 
     return 0;
 

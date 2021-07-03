@@ -10,21 +10,28 @@ HashesMap* HashesMap::getInstance()
     return instance;
 }
 
-std::map<std::string, std::string> HashesMap::getDataMap()
+std::vector<std::string> HashesMap::getPicturesNames()
 {
-    return hashes_map;
+    return pictures_names;
 }
 
-void HashesMap::addToMap(std::string file, std::string hash)
+std::vector<int64_t> HashesMap::getPicturesHashes()
+{
+    return pictures_hashes;
+}
+
+void HashesMap::addToMap(std::string file, int64_t hash)
 {
     map_mutex->lock();
-    hashes_map.emplace(file, hash);
+    pictures_names.emplace_back(file);
+    pictures_hashes.emplace_back(hash);
     map_mutex->unlock();
 }
 
 HashesMap::HashesMap()
 {
-    hashes_map = std::map<std::string, std::string>();
+    pictures_names = std::vector<std::string>();
+    pictures_hashes = std::vector<int64_t>();
     map_mutex = new std::mutex();
 }
 

@@ -8,10 +8,9 @@ LDFLAGS= -lm
 CFLAGS=-Wall -Wfatal-errors -Wno-unused-result -Wno-unknown-pragmas -Wunused -Wunreachable-code -Wno-deprecated-declarations
 CFLAGS+=$(OPTS)
 
-CFLAGS+= -std=c++17 -pthread
+CFLAGS+= -std=c++17
 
 COMMON+= -I/usr/local/include/opencv4
-#LDFLAGS+= -L/usr/local/lib -lopencv_core -lopencv_imgcodecs -lopencv_imgproc
 LDFLAGS+= -lboost_filesystem -lopencv_core -lopencv_imgcodecs -lopencv_imgproc
 
 OBJ_CPU1=$(patsubst %.cpp,%.o,$(wildcard src/*.cpp))
