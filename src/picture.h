@@ -29,8 +29,7 @@ public:
 
     explicit Picture(std::string pic_name);
     virtual ~Picture();
-    int64_t getPictureHash(hashType hash_type=DHASH); // call a method for hashes
-    // and write hash in a singleton map
+    int64_t getPictureHash(hashType hash_type=DHASH);
     int64_t getErrorHashValue();
 };
 
