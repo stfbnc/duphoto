@@ -10,8 +10,8 @@ CFLAGS+=$(OPTS)
 
 CFLAGS+= -std=c++17
 
-COMMON+= -I/usr/local/include/opencv4
-LDFLAGS+= -lboost_filesystem -lopencv_core -lopencv_imgcodecs -lopencv_imgproc
+COMMON+= -I/usr/local/Cellar/opencv/4.4.0/include/opencv4/
+LDFLAGS+= -L/usr/local/Cellar/gcc/10.1.0/lib/gcc/10/ -lboost_filesystem -L/usr/local/Cellar/opencv/4.4.0/lib/ -lopencv_core -lopencv_imgcodecs -lopencv_imgproc
 
 OBJ_CPU1=$(patsubst %.cpp,%.o,$(wildcard src/*.cpp))
 
@@ -40,3 +40,5 @@ $(OBJ_DIR)%.o: %.cpp $(DEPS_CPU1)
 
 clean:
 	rm -rf ./obj/
+	rm -f $(RELEASE)
+
